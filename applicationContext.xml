@@ -14,6 +14,11 @@
             <property name="id" value="1234"/>
             <property name="name" value="computer"/>
         </bean>
+
+        <bean id="knight" class="com.james.springdemo.entity.Knight">
+            <property name="quest" ref="quest"/>
+        </bean>
+        <bean id="quest" class="com.james.springdemo.quest.SavePrincessQuest"></bean>
     </beans>
 
 </beans>
