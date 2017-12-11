@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
 
-    <beans>
+
         <bean id="book" class="com.james.springdemo.entity.Book">
             <property name="category" ref="category"/>
         </bean>
@@ -19,6 +24,43 @@
             <property name="quest" ref="quest"/>
         </bean>
         <bean id="quest" class="com.james.springdemo.quest.SavePrincessQuest"></bean>
-    </beans>
+
+        <bean id="minstrel" class="com.james.springdemo.minstrel.Minstrel">
+            <property name="stream" value="#{T(System).out}"/>
+        </bean>
+
+    <bean id="cdPlayer" class="com.james.springdemo.entity.CDPLayer" scope="prototype">
+        <property name="cd" ref="cd"/>
+    </bean>
+
+    <bean id="cd" class="com.james.springdemo.entity.CompatDisc" >
+        <property name="artisit" value="nogizaka46"/>
+        <property name="tracks">
+            <list>
+                <value>guruguru curtain</value>
+                <value>mirage</value>
+                <value>influencer</value>
+                <value>slient majority(cover keyakizaka46)</value>
+            </list>
+        </property>
+    </bean>
+        <!--<aop:config>
+
+            &lt;!&ndash;定义切点&ndash;&gt;
+            <aop:aspect ref="minstrel">
+                &lt;!&ndash;定义切点&ndash;&gt;
+                <aop:pointcut id="mission" expression="execution(* *.doQuest(..))"></aop:pointcut>
+
+                &lt;!&ndash;声明前置通知&ndash;&gt;
+                <aop:before pointcut-ref="mission" method="singBeforeQuest"/>
+                <aop:after pointcut-ref="mission" method="singAfterQuest"/>
+
+            </aop:aspect>
+
+        </aop:config>-->
+
+
+
+
 
 </beans>

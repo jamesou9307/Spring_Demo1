@@ -18,5 +18,10 @@ public class Knight {
     public void setQuest(Quest quest) {
         this.quest = quest;
     }
+    
+    public void doQuest(){
+        
+        quest.mission();
+    }
 }
 
