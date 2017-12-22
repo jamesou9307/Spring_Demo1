@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
+       xmlns:context="http://www.springframework.org/schema/context"
 
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
-       http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-        <bean id="book" class="com.james.springdemo.entity.Book">
+    <!--启用aspectj自动代理 Spring将会把带有aspectj注解的类转换为切面-->
+    <aop:aspectj-autoproxy />
+
+
+    <bean id="book" class="com.james.springdemo.entity.Book">
             <property name="category" ref="category"/>
         </bean>
 
-        <bean id="category" class="com.james.springdemo.entity.Category">
+    <bean id="category" class="com.james.springdemo.entity.Category">
             <property name="id" value="1234"/>
             <property name="name" value="computer"/>
         </bean>
 
-        <bean id="knight" class="com.james.springdemo.entity.Knight">
+    <bean id="knight" class="com.james.springdemo.entity.Knight">
             <property name="quest" ref="quest"/>
         </bean>
-        <bean id="quest" class="com.james.springdemo.quest.SavePrincessQuest"></bean>
+    <bean id="quest" class="com.james.springdemo.quest.SavePrincessQuest"></bean>
 
-        <bean id="minstrel" class="com.james.springdemo.minstrel.Minstrel">
+    <bean id="minstrel" class="com.james.springdemo.minstrel.Minstrel">
             <property name="stream" value="#{T(System).out}"/>
-        </bean>
+    </bean>
 
     <bean id="cdPlayer" class="com.james.springdemo.entity.CDPLayer" scope="prototype">
         <property name="cd" ref="cd"/>
@@ -46,6 +50,8 @@
         </property>
     </bean>
 
+    <bean id="trackCounter" class="com.james.springdemo.aspect.TrackCounter"/>
+
     <bean id="human" class="com.james.springdemo.entity.Human">
         <property name="axe" value="#{axe}"/>
     </bean>
@@ -53,6 +59,9 @@
 
 
     </bean>
+
+    <bean id="concert" class="com.james.springdemo.performance.Concert"/>
+    <bean id="audience" class="com.james.springdemo.aspect.Audience"/>
 
     <bean id="musicPlayer" class="com.james.springdemo.entity.MusicPlayer">
         <constructor-arg>
@@ -86,20 +95,7 @@
         <property name="name" value="must be now"/>
         <property name="artist" value="nmb48"/>
     </bean>
-        <!--<aop:config>
 
-            &lt;!&ndash;定义切点&ndash;&gt;
-            <aop:aspect ref="minstrel">
-                &lt;!&ndash;定义切点&ndash;&gt;
-                <aop:pointcut id="mission" expression="execution(* *.doQuest(..))"></aop:pointcut>
-
-                &lt;!&ndash;声明前置通知&ndash;&gt;
-                <aop:before pointcut-ref="mission" method="singBeforeQuest"/>
-                <aop:after pointcut-ref="mission" method="singAfterQuest"/>
-
-            </aop:aspect>
-
-        </aop:config>-->
 
 
 
