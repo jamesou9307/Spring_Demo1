@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-
-
 
         <bean id="book" class="com.james.springdemo.entity.Book">
             <property name="category" ref="category"/>
@@ -43,6 +44,47 @@
                 <value>slient majority(cover keyakizaka46)</value>
             </list>
         </property>
+    </bean>
+
+    <bean id="human" class="com.james.springdemo.entity.Human">
+        <property name="axe" value="#{axe}"/>
+    </bean>
+    <bean id="axe" class="com.james.springdemo.tools.Axe">
+
+
+    </bean>
+
+    <bean id="musicPlayer" class="com.james.springdemo.entity.MusicPlayer">
+        <constructor-arg>
+            <list>
+
+                <ref bean="music2"/>
+                <ref bean="music3"/>
+                <ref bean="music4"/>
+                <ref bean="music5"/>
+            </list>
+        </constructor-arg>
+
+    </bean>
+    <bean id="music1" class="com.james.springdemo.entity.Music">
+        <property name="name" value="silent majority"/>
+        <property name="artist" value="keyakizaka 46"/>
+    </bean>
+    <bean id="music2" class="com.james.springdemo.entity.Music">
+        <property name="name" value="mirage"/>
+        <property name="artist" value="nogizaka 46"/>
+    </bean>
+    <bean id="music3" class="com.james.springdemo.entity.Music">
+        <property name="name" value="sky diving"/>
+        <property name="artist" value="nogizaka 46"/>
+    </bean>
+    <bean id="music4" class="com.james.springdemo.entity.Music">
+        <property name="name" value="influencer"/>
+        <property name="artist" value="nogizaka 46"/>
+    </bean>
+    <bean id="music5" class="com.james.springdemo.entity.Music">
+        <property name="name" value="must be now"/>
+        <property name="artist" value="nmb48"/>
     </bean>
         <!--<aop:config>
 

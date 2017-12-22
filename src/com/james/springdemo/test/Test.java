@@ -1,9 +1,6 @@
 package com.james.springdemo.test;
 
-import com.james.springdemo.entity.Book;
-import com.james.springdemo.entity.CDPLayer;
-import com.james.springdemo.entity.Category;
-import com.james.springdemo.entity.Knight;
+import com.james.springdemo.entity.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -20,12 +17,20 @@ public class Test {
         book.setCategory(category);
         System.out.println(book.toString());*/
 
-        /*Knight knight=context.getBean(Knight.class);
-        knight.doQuest();*/
+        Knight knight=context.getBean(Knight.class);
+        knight.doQuest();
 
-        CDPLayer cdpLayer=context.getBean(CDPLayer.class);
+       /* CDPLayer cdpLayer=context.getBean(CDPLayer.class);
         CDPLayer cdpLayer1=context.getBean(CDPLayer.class);
-        System.out.println(cdpLayer1==cdpLayer);
+        System.out.println(cdpLayer1==cdpLayer);*/
+/*
+        Human human=context.getBean(Human.class);
+        human.useAxe();*/
+
+      /*  MusicPlayer musicPlayer=context.getBean(MusicPlayer.class);
+        for(Music music:musicPlayer.getMusicList()){
+            music.play();
+        }*/
 
 
     }
